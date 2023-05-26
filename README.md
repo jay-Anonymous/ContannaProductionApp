@@ -1,23 +1,3 @@
-# first_app: Starter app for a Flutter production app
-
-**Maintainer**: Greger Wedel, <https://github.com/gregertw>
-
-Listed on: [![Awesome Flutter](https://img.shields.io/badge/Awesome-Flutter-blue.svg?longCache=true&style=flat-square)](https://github.com/Solido/awesome-flutter)
-
-**Latest build and artifacts**: [![Codemagic build status](https://api.codemagic.io/apps/5e23f3b4c5faa6a356815277/5e23f3b4c5faa6a356815276/status_badge.svg)](https://codemagic.io/apps/5e23f3b4c5faa6a356815277/5e23f3b4c5faa6a356815276/latest_build)
-
-**Latest update:** Support for Flutter 3.10.1
-
-There are lots of simple Flutter app examples out there, but very few show how to tie together the elements
-you need to put an app into production. In my process of evaluating Flutter maturity and readiness for
-production apps, I started to put together the various elements into a single app. It evolved over time to
-a starter app (and template on Github) that has been updated and following best practices and sound engineering
-practices.
-
-The focus of this starter app is thus not on the UI or functionality, but rather to show how a set of typical
-app functionalities can be developed and supported in a sound code structure. The app structure has also been
-designed to support a development team through separation of concerns and sound abstractions, as well as support
-for all layers of testing (unit, widget, and integration).
 
 This app has the following elements:
 
