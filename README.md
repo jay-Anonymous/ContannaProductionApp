@@ -20,13 +20,6 @@ This app has the following elements:
 - Use of Google Maps to present a map of the current location
 - Use of an independently defined new widget type called AnchoredOverlay to overlay a map widget
 
-Here is a blog post about the value of using a starter app: <https://stuff.greger.io/2021/08/why-and-how-you-should-use-a-flutter-starter-app.html>
-
-Also, see my blog post for a more detailed introduction to the various features: <https://stuff.greger.io/2019/07/production-quality-flutter-starter-app.html>.
-
-## Known issues
-
-- firebase_crashlytics does not support web
 
 ## Suggested improvements
 
@@ -138,9 +131,7 @@ edit the code and configs there directly. How is documented in the sections belo
 To build the web version, use `flutter build web --base-href="/<some_path>/"` or use just `/`if you deploy to the root of
 the domain. The web app should be deployed to `https://my.domain.com/some_path/`.
 
-As of Flutter 2, web is supported on stable release, <https://flutter.dev/web> and a web version of app is available
-at <https://gregertw.github.io/actingweb_firstapp_web>. The support for packagaes has increased, and most of the
-functionality is now supported in the web version.
+
 
  See <https://flutter.dev/docs/get-started/web>. If you get errors, do `flutter clean`.
 
@@ -363,9 +354,7 @@ Currently, there is limited support for splitting up integration tests into sepa
 in the same file. However, you can use several testWidgets() calls. For demonstration purposes and due to the need
 to log in, the current integration tests are all within the same testWidgets().
 
-**This used to work, but support was removed when integration testing was changed. Not yet verified to work!**
-You can also install chromedriver and run the tests in the browser. Make sure chromedriver is in your path and run:
-`chromedriver --port=4444 &; flutter drive --driver test_driver/driver.dart --target integration_test/app_test.dart -d web-server`
+
 
 ### Mocking in Integration Tests
 
@@ -375,27 +364,4 @@ to the state (see `model/appstate.dart`). The mocks object is a map of objects t
 for an example where geolocation mock is enabled through setting mock: true. Note that care should be taken to avoid that
 mocks can be triggered in the a production app as authentication can be bypassed this way.
 
-## Some thoughts on state management
-
-In investigating the various state management approaches, Brian Egan's <http://fluttersamples.com/> was very
-helpful. I tried out a few approaches and in an early version of first_app ended up on scoped_model as an approach
-that is intuitive, plays well with the Flutter principles of app design, and that is powerful enough to support a production app.
-State management is a matter of taste, but I was trying to find the set of app architectural approaches that
-fit with Flutter and that can support a bigger team of developers.
-
-This choice turned out to be a pretty good one as the developer behind scoped_model also worked on the provider package
-which in 2019 became the recommended way to provide widget trees with state updates. Provider is not entirely a
-replacement of scoped_model, quoted from the provider home: "A mixture between dependency injection (DI) and
-state management, built with widgets for widgets."
-In the process of replacing scoped_model with provider, I chose not to add a more powerful state management
-package (like MobX), but rather use simple classes with the ChangeNotifier mixin. This is all that is needed for
-provider to pick up notifyListeners() calls. In a bigger application, you probably want to choose a state management
-packaged like MobX to better handle more complex states.
-
-The developer of provider has later developed <https://pub.dev/packages/flutter_riverpod>, which is a total rewrite
-of state management (not using InheritedWidget). It is positioned as a "better" provider, however, I have chosen
-not to rewrite the starter app with riverpod as provider is powerful enough for many real-life scenarios and the
-current introduction to riverpod is harder to understand until you are deeper into Flutter. Also, there have been
-introduced more state management packages and frameworks and choosing one that fits your project must be
-evaluated on a case by case basis.
 # ContannaProductionApp
